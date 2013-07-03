@@ -1,19 +1,21 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(
     name="getpaid.wizard",
     version="0.5dev",
-    install_requires=['setuptools',
-                      'getpaid.core',], 
-    dependency_links=['http://download.zope.org/distribution/',],
+    install_requires=[
+        'setuptools',
+        'getpaid.core'
+    ],
     packages=find_packages('src', exclude=["*.tests", "*.ftests"]),
-    package_dir= {'':'src'},
+    package_dir={'': 'src'},
     namespace_packages=['getpaid'],
-    package_data = {
+    package_data={
     '': ['*.txt', '*.zcml', '*.pt'],
     },
     zip_safe=False,
@@ -32,7 +34,7 @@ setup(
         "Topic :: Office/Business :: Financial",
         "Topic :: Software Development :: Libraries",
     ],
-    long_description = (
+    long_description=(
         read('README.txt')
         + '\n' +
         read('CHANGES.txt')
@@ -43,4 +45,8 @@ setup(
         'Download\n'
         '**********************\n'
         ),
-    )
+    entry_points="""
+    [z3c.autoinclude.plugin]
+    target = plone
+    """,
+)
